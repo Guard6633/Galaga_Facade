@@ -15,6 +15,7 @@ public:
 	// Sets default values for this actor's properties
 	AFacadeMotherShip();
 
+protected:
 	TArray<class AMotherShipBoss*> Boss;
 	TArray<FString> Phases;
 
@@ -34,5 +35,8 @@ public:
 	void Phase2();
 	void Phase3();
 
+
+private:
 	void MakeChanges(TArray<class AMotherShipBoss*> _Bosses, TArray<FString> Phases);
+
 };

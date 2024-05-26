@@ -3,31 +3,26 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "MotherShipBoss.h"
-#include "MotherShipArwing.generated.h"
+#include "GameFramework/Actor.h"
+#include "Shield.generated.h"
 
-/**
- * 
- */
 UCLASS()
-class GALAGA_FACADE_API AMotherShipArwing : public AMotherShipBoss
+class GALAGA_FACADE_API AShield : public AActor
 {
 	GENERATED_BODY()
 	
-public:
-	AMotherShipArwing();
+public:	
+	// Sets default values for this actor's properties
+	AShield();
 
-	class UStaticMeshComponent* ArwingMesh;
-
+	class UStaticMeshComponent* ShieldMesh;
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:
+public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void Phases() override;
-	FString BossName() override;
 };

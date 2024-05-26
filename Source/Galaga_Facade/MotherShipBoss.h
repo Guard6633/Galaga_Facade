@@ -15,6 +15,16 @@ public:
 	// Sets default values for this actor's properties
 	AMotherShipBoss();
 
+	//class AWeapon* Weapon;
+	//class UMovementBossComponent* Movement;
+
+private:
+
+	float PhaseTimer;
+
+	EBossPhase CurrentPhase;
+		
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -23,10 +33,10 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void UpdateWeapons();
-	void UpdateShield();
+	void AddWeapon();
+	void AddShield();
 	void UpdateStatus();
-	void UpdateMovement();
+	void ChangeMovement();
 
 	void CombatPhases(const TArray<FString>& _Phases);
 
@@ -35,4 +45,14 @@ public:
 
 private:
 	void ChangePhases(const FString& _Phases);
+	void UpdatePhase(float DeltaTime);
+};
+
+UENUM(BlueprintType)
+enum class EBossPhase : uint8
+{
+	PhaseNone UMETA(DisplayName = "None"),
+	Phase1 UMETA(DisplayName = "Phase 1"),
+	Phase2 UMETA(DisplayName = "Phase 2"),
+	Phase3 UMETA(DisplayName = "Phase 3")
 };

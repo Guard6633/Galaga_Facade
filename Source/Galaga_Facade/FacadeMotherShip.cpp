@@ -21,15 +21,7 @@ void AFacadeMotherShip::BeginPlay()
 	
 	Boss = TArray<AMotherShipBoss*>();
 	Phases = TArray<FString>();
-
-	Arwing = GetWorld()->SpawnActor<AMotherShipArwing>(AMotherShipArwing::StaticClass());
-	Executor = GetWorld()->SpawnActor<AMotherShipExecutor>(AMotherShipExecutor::StaticClass());
-	Prydwen = GetWorld()->SpawnActor<AMotherShipPrydwen>(AMotherShipPrydwen::StaticClass());
-
-	Boss.Add(Arwing);
-	Boss.Add(Executor);
-	Boss.Add(Prydwen);
-}
+}	
 
 // Called every frame
 void AFacadeMotherShip::Tick(float DeltaTime)
@@ -40,11 +32,15 @@ void AFacadeMotherShip::Tick(float DeltaTime)
 
 void AFacadeMotherShip::Phase1()
 {
+	Arwing = GetWorld()->SpawnActor<AMotherShipArwing>(AMotherShipArwing::StaticClass(), FVector(1800, 800, 220), FRotator::ZeroRotator);
+	Arwing->SetActorScale3D(FVector(4, 4, 4));
+	Boss.Add(Arwing);
+
 	Phases.Empty();
-	Phases.Add("UpdateWeapons");
-	Phases.Add("UpdateShield");
+	Phases.Add("AddWeapon");
+	Phases.Add("AddShield");
+	Phases.Add("ChangeMovement");
 	Phases.Add("UpdateStatus");
-	Phases.Add("Phases");
 
 	MakeChanges(Boss, Phases);
 
@@ -52,11 +48,15 @@ void AFacadeMotherShip::Phase1()
 
 void AFacadeMotherShip::Phase2()
 {
+	Executor = GetWorld()->SpawnActor<AMotherShipExecutor>(AMotherShipExecutor::StaticClass(), FVector(1800, 0, 220), FRotator::ZeroRotator);
+	Executor->SetActorScale3D(FVector(4, 4, 4));
+	Boss.Add(Executor);
+
 	Phases.Empty();
-	Phases.Add("UpdateWeapons");
-	Phases.Add("UpdateShield");
+	Phases.Add("AddWeapon");
+	Phases.Add("AddShield");
+	Phases.Add("ChangeMovement");
 	Phases.Add("UpdateStatus");
-	Phases.Add("Phases");
 
 	MakeChanges(Boss, Phases);
 
@@ -64,11 +64,15 @@ void AFacadeMotherShip::Phase2()
 
 void AFacadeMotherShip::Phase3()
 {
+	Prydwen = GetWorld()->SpawnActor<AMotherShipPrydwen>(AMotherShipPrydwen::StaticClass(), FVector(1800, -800, 220), FRotator::ZeroRotator);
+	Prydwen->SetActorScale3D(FVector(4, 4, 4));
+	Boss.Add(Prydwen);
+
 	Phases.Empty();
-	Phases.Add("UpdateWeapons");
-	Phases.Add("UpdateShield");
+	Phases.Add("AddWeapon");
+	Phases.Add("AddShield");
+	Phases.Add("ChangeMovement");
 	Phases.Add("UpdateStatus");
-	Phases.Add("Phases");
 
 	MakeChanges(Boss, Phases);
 }
